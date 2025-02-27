@@ -1,0 +1,20 @@
+{
+  "name": "mcp-mysql",
+  "version": "1.0.0",
+  "description": "MCP server for MySQL operations",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.9.1",
+    "dotenv": "^16.4.1",
+    "@modelcontextprotocol/sdk": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "typescript": "^5.3.3"
+  }
+} 
