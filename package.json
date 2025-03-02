@@ -8,6 +8,9 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
+  "bin": {
+    "mcp-mysql": "dist/index.js"
+  },
   "dependencies": {
     "mysql2": "^3.9.1",
     "dotenv": "^16.4.1",
