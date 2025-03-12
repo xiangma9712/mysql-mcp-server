@@ -4,6 +4,10 @@ An MCP server for interacting with MySQL databases.
 
 This server supports executing read-only queries (query) and write queries that are ultimately rolled back (test_execute).
 
+<a href="https://glama.ai/mcp/servers/kucglstegf">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/kucglstegf/badge" alt="MySQL Server MCP server" />
+</a>
+
 ## Setup
 
 ### Environment Variables
