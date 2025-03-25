@@ -38,7 +38,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
     tools: [
       {
         name: "query",
-        description: "読み取り専用のSQLクエリを実行します。",
+        description: "Executes a read-only SQL query.",
         inputSchema: {
           type: "object",
           properties: {
@@ -49,7 +49,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "test_execute",
-        description: "SQLが実行可能か確認し、最後にロールバックします。",
+        description: "Checks if an SQL query can be executed and rolls back afterward.",
         inputSchema: {
           type: "object",
           properties: {
@@ -60,14 +60,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       },
       {
         name: "list_tables",
-        description: "データベース内のテーブル一覧を取得します。",
+        description: "Retrieves a list of tables in the database.",
         inputSchema: {
           type: "object",
         },
       },
       {
         name: "describe_table",
-        description: "テーブルのカラム情報を取得します。",
+        description: "Retrieves column information for a table.",
         inputSchema: {
           type: "object",
           properties: {
@@ -102,14 +102,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           await connection.query(sql);
         } catch (error) {
           return {
-            content: [{ type: "text", text: `SQLの実行に失敗しました。error: ${error}` }],
+            content: [{ type: "text", text: `Failed to execute SQL. error: ${error}` }],
             isError: true,
           };
         } finally {
           await connection.query('ROLLBACK');
         }
         return {
-          content: [{ type: "text", text: "更新SQLクエリが実行可能です。" }],
+          content: [{ type: "text", text: "The update SQL query can be executed." }],
           isError: false,
         };
       }
@@ -144,7 +144,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     return {
       content: [{
         type: "text",
-        text: error instanceof Error ? error.message : "不明なエラーが発生しました"
+        text: error instanceof Error ? error.message : "An unknown error occurred"
       }],
       isError: true,
     };
@@ -155,7 +155,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       return {
         content: [{
           type: "text",
-          text: `connection close failed, error: ${error}`
+          text: `Failed to close connection, error: ${error}`
         }],
         isError: true,
       }
@@ -171,7 +171,7 @@ async function main() {
 process.once("SIGTERM", () => {
   console.log(`SIGTERM received, closing server`);
   server.close().then(() => {
-    console.log(`server closed, exiting`);
+    console.log(`Server closed, exiting`);
     process.exit(0);
   });
 });
@@ -179,13 +179,13 @@ process.once("SIGTERM", () => {
 process.once("SIGINT", () => {
   console.log(`SIGINT received, closing server`);
   server.close().then(() => {
-    console.log(`server closed, exiting`);
+    console.log(`Server closed, exiting`);
     process.exit(0);
   });
 
 });
 
 main().catch(error => {
-  console.error(error instanceof Error ? error.message : "不明なエラーが発生しました");
+  console.error(error instanceof Error ? error.message : "An unknown error occurred");
   process.exit(1);
-}); 
+});
