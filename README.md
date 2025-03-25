@@ -39,7 +39,7 @@ MYSQL_PASSWORD=your_password
         "--add-host=host.docker.internal:host-gateway",
         "--env-file",
         "/Users/username/.mcp/.env",
-        "my-mcp/mysql"
+        "ghcr.io/xiangma9712/mcp/mysql"
       ]
     }
   }
@@ -51,7 +51,7 @@ MYSQL_PASSWORD=your_password
 ### Starting the Server
 
 ```sh
-docker run -i --rm --add-host=host.docker.internal:host-gateway --env-file ~/.mcp/.env my-mcp/mysql
+docker run -i --rm --add-host=host.docker.internal:host-gateway --env-file ~/.mcp/.env ghcr.io/xiangma9712/mcp/mysql
 ```
 
 > **Note**: If you're using OrbStack, `host.docker.internal` is automatically supported, so the `--add-host` option can be omitted.
