@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
@@ -80,7 +82,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const connection = await initializeConnection();
-  
+
   try {
     switch (request.params.name) {
       case "query": {
@@ -140,9 +142,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
   } catch (error) {
     return {
-      content: [{ 
-        type: "text", 
-        text: error instanceof Error ? error.message : "不明なエラーが発生しました" 
+      content: [{
+        type: "text",
+        text: error instanceof Error ? error.message : "不明なエラーが発生しました"
       }],
       isError: true,
     };
@@ -180,7 +182,7 @@ process.once("SIGINT", () => {
     console.log(`server closed, exiting`);
     process.exit(0);
   });
-  
+
 });
 
 main().catch(error => {
